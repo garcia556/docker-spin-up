@@ -24,7 +24,7 @@ if [ -z "${mode}" ]; then
 else
 	case ${mode} in
 		"i") # install package
-			cmd="install $2 --save --silent"
+			cmd="install --silent $2"
 			;;
 		"r") # run
 			# save args and pass to node script
