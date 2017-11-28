@@ -42,7 +42,7 @@ else
 fi
 
 echo "{ \"scripts\": { \"start\": \"node app.js\" } }" > ${CFG}
-docker run --rm -w /app -v $(pwd):/app -p ${PORTS} "node:${IMAGE}" npm ${cmd}
+docker run --rm -w /app -v $(pwd):/app ${PORTS} "node:${IMAGE}" npm ${cmd}
 rm ${CFG}
 
 if [ "${mode}" == "r" ] && [ "${APP_DEMO}" == "1" ]; then
