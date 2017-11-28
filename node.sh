@@ -6,7 +6,7 @@
 # - ./node-docker-spinup.sh r            : run script app.js; supports command line arguments
 
 IMAGE="9.2.0-alpine"
-PORTS="8080:8080"
+PORTS="-p 8080:8080/tcp -p 8080:8080/udp"
 CFG="package.json"
 APP="app.js"
 APP_DEMO="0"
@@ -42,7 +42,7 @@ else
 fi
 
 echo "{ \"scripts\": { \"start\": \"node app.js\" } }" > ${CFG}
-docker run --rm -w /app -v $(pwd):/app -p "${PORTS}" "node:${IMAGE}" npm ${cmd}
+docker run --rm -w /app -v $(pwd):/app -p ${PORTS} "node:${IMAGE}" npm ${cmd}
 rm ${CFG}
 
 if [ "${mode}" == "r" ] && [ "${APP_DEMO}" == "1" ]; then
